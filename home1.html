@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUCTUS MOVIES</title>
+    <link rel="stylesheet" href="hom2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span>AUCTUS MOVIES</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">My List</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search movies...">
+            <button id="search-button"><i class="fas fa-search"></i></button>
+            <div class="search-results" id="search-results"></div>
+        </div>
+        <div class="user-profile">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to AUCTUS MOVIES</h1>
+                <p>Your ultimate destination for the latest and greatest movies.</p>
+            </div>
+        </section>
+
+        <!-- Slideshow Section -->
+        <section class="slideshow">
+            <div class="slideshow-container" id="slideshow">
+                <!-- Slides will be dynamically generated here -->
+            </div>
+        </section>
+
+        <section class="movies">
+            <h2>Newly Launched Movies</h2>
+            <div class="movie-grid" id="movies">
+                <!-- Movie cards will be dynamically generated here -->
+            </div>
+        </section>
+        <section class="top-features">
+            <h2>More Movies</h2>
+            <div class="feature-grid" id="top-features">
+                <!-- Top 5 features will be dynamically generated here -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 AUCTUS. All rights reserved.</p>
+    </footer>
+    <script src="home3.js"></script>
+</body>
+</html>
