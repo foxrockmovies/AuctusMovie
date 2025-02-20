@@ -20,7 +20,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px;
     background-color: #1f1f1f;
     position: sticky;
     top: 0;
@@ -36,13 +36,13 @@ header {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
     transition: color 0.3s;
 }
 
@@ -58,13 +58,13 @@ nav ul li a:hover {
 }
 
 .search-bar input {
-    padding: 8px;
+    padding: 10px;
     border: none;
     border-radius: 25px;
     background-color: #333;
     color: #fff;
     transition: background-color 0.3s;
-    width: 150px;
+    width: 200px;
 }
 
 .search-bar input::placeholder {
@@ -77,7 +77,7 @@ nav ul li a:hover {
 }
 
 .search-bar button {
-    padding: 8px;
+    padding: 10px;
     border: none;
     border-radius: 50%;
     background-color: #e50914;
@@ -91,15 +91,24 @@ nav ul li a:hover {
     transform: scale(1.1);
 }
 
+.clear-button {
+    display: none; /* Hidden by default */
+    background-color: #666;
+}
+
+.clear-button:hover {
+    background-color: #888;
+}
+
 .search-results {
     position: absolute;
-    top: 40px;
+    top: 50px;
     left: 0;
     width: 100%;
     background-color: #1f1f1f;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
     display: none;
     z-index: 1000;
@@ -117,6 +126,15 @@ nav ul li a:hover {
 
 .search-results div:hover {
     background-color: #333;
+}
+
+.search-results div.highlight {
+    background-color: #444;
+}
+
+.highlight-text {
+    color: #e50914;
+    font-weight: bold;
 }
 
 .user-profile {
@@ -154,7 +172,7 @@ nav ul li a:hover {
 }
 
 .hero {
-    height: 50vh;
+    height: 60vh;
     background: url('hero-bg.jpg') no-repeat center center/cover;
     display: flex;
     justify-content: center;
@@ -178,28 +196,28 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 48px;
     margin-bottom: 20px;
 }
 
 .hero p {
-    font-size: 18px;
+    font-size: 24px;
     color: #ccc;
 }
 
 .movies, .top-features {
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 .movies h2, .top-features h2 {
-    font-size: 28px;
+    font-size: 32px;
     margin-bottom: 20px;
 }
 
 .movie-grid, .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .movie-card, .feature-card {
@@ -217,7 +235,7 @@ nav ul li a:hover {
 
 .movie-card img {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -251,24 +269,24 @@ nav ul li a:hover {
 }
 
 .movie-card .movie-info, .feature-card .feature-info {
-    padding: 10px;
+    padding: 15px;
     text-align: center;
 }
 
 .movie-card .movie-info h3, .feature-card .feature-info h3 {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
 .movie-card .movie-info p, .feature-card .feature-info p {
-    font-size: 12px;
+    font-size: 14px;
     color: #b3b3b3;
 }
 
 .download-button {
     display: inline-block;
-    padding: 8px 16px;
-    font-size: 12px;
+    padding: 10px 20px;
+    font-size: 14px;
     color: #fff;
     background-color: #e50914;
     border: none;
@@ -289,7 +307,7 @@ footer {
     padding: 20px;
     text-align: center;
     background-color: #1f1f1f;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 /* Dark/Light Mode Toggle */
@@ -306,96 +324,140 @@ body.light-mode .movie-card p, body.light-mode .feature-card p {
     color: #666;
 }
 
+body {
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .logo span {
-        font-size: 20px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .search-bar {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .search-bar input {
-        width: 100%;
+    .movie-grid, .feature-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
     .hero h1 {
-        font-size: 28px;
+        font-size: 36px;
     }
 
     .hero p {
-        font-size: 16px;
-    }
-
-    .movies h2, .top-features h2 {
-        font-size: 24px;
-    }
-
-    .movie-grid, .feature-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-
-    .movie-card img {
-        height: 150px;
-    }
-
-    .movie-card .movie-info h3, .feature-card .feature-info h3 {
-        font-size: 14px;
-    }
-
-    .movie-card .movie-info p, .feature-card .feature-info p {
-        font-size: 10px;
-    }
-
-    .download-button {
-        padding: 6px 12px;
-        font-size: 10px;
+        font-size: 18px;
     }
 }
 
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 24px;
-    }
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 70vh; /* Adjust height as needed */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
-    .hero p {
-        font-size: 14px;
-    }
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
 
-    .movies h2, .top-features h2 {
-        font-size: 20px;
-    }
+.slide-content {
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    width: 40%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+    padding: 20px;
+    text-align: left;
+    color: #fff;
+    border-radius: 10px;
+}
 
-    .movie-grid, .feature-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    }
+.slide-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
 
-    .movie-card img {
-        height: 120px;
-    }
+.slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
 
-    .movie-card .movie-info h3, .feature-card .feature-info h3 {
-        font-size: 12px;
-    }
+.slide-content .slide-button {
+    background-color: #e50914;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
 
-    .movie-card .movie-info p, .feature-card .feature-info p {
-        font-size: 8px;
-    }
+.slide-content .slide-button:hover {
+    background-color: #f40612;
+}
 
-    .download-button {
-        padding: 5px 10px;
-        font-size: 8px;
-    }
+/* Navigation Arrows */
+.slideshow-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.slideshow-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    font-size: 1.5rem;
+}
+
+.slideshow-nav button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots Container */
+.dots-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #e50914;
+}
+
+.auth-form {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
