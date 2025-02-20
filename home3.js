@@ -1,144 +1,174 @@
 const movies = [
     {
-        title: 'Sky Force 4K',
-        description: 'India and Pakistan engage in airstrike warfare. The conflict escalates, risking severe consequences. A group of individuals seeks the truth behind the war amid rising tensions.',
-        downloadUrl: 'https://vidtube.one/d/u936cpl37x2y_h',
+        title: 'Marco',
+        description: 'Adattu is one of the most renowned gold-trading families in Kerala. Unexpectedly, an incident shakes the Adattu family. George, the head of the family, sets out to uncover the truth and find those responsible. At the same time, his younger brother, Marco, embarks on the same quest but through a different Path.',
+        image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg',
+        genre: 'Adventure',
+        downloadUrl: 'https://hubcloud.ink/drive/qycw4b4ddyxbzvc' // Add download URL
     },
     {
-        title: 'Chhaava SD',
-        description: 'Chhaava is a 2025 Indian Hindi-language historical action film based on the life of Chatrapati Sambhaji Maharaj, the second ruler of the Maratha Confederacy, played by Vicky Kaushal. It is an adaptation of the Marathi novel Chhava by Shivaji Sawant.',
-        downloadUrl: 'https://hubcloud.ink/drive/11n7jmw7mnq9xam',
+        title: 'Baby John',
+        description: 'DCP Satya Verma fakes his own death to protect his daughter from the dangerous politician Babbar Sher. When old enemies resurface, Satya must confront his past and put everything on the line to safeguard his family.',
+        image: 'https://i.redd.it/84mju1gjr4hc1.jpeg',
+        genre: 'Action/Drama',
+        downloadUrl: 'https://hubcloud.ink/drive/anjvvvrnbnafh1v' // Add download URL
     },
-    // Add more movies here
+    {
+        title: 'The Sabarmati Report',
+        description: 'A journalist investigates the 2002 Godhra train burning in Gujarat. Years later, another reporter discovers his hidden report. They uncover a conspiracy involving powerful figures, facing threats as they pursue the truth.',
+        image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg',
+        genre: 'Drama',
+        downloadUrl: 'https://hubcloud.ink/drive/zzj4ymum1c31qr1' // Add download URL
+    },
+    {
+        title: 'Pushpa 2: The Rule',
+        description: 'The clash is on as Pushpa and Bhanwar Singh continue their rivalry in this epic conclusion to the two-parted action drama.',
+        image: 'https://m.media-amazon.com/images/M/MV5BZjllNTdiM2QtYjQ0Ni00ZGM1LWFlYmUtNWY0YjMzYWIxOTYxXkEyXkFqcGc@._V1_.jpg',
+        genre: 'Action/Thriller',
+        downloadUrl: 'https://hubcloud.ink/drive/0u2t7tugc11gtdj' // Add download URL
+    },
+    {
+        title: 'Game Changer',
+        description: 'Ram Nandan, a government official, embarks on a relentless fight against corrupt politicians. Determined to bring about fair elections, he tries to revolutionise the way the government operates.',
+        image: 'https://resizing.flixster.com/oU1jMB-OmqwbQHEfEwX7ZxLJNww=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzE3NjVhNzY3LWNhM2ItNGY0ZS05Y2RkLWFjZjQ0ODdjZTI5Mi5qcGc=',
+        genre: ' Action/Thriller',
+        downloadUrl: 'https://hubcloud.ink/drive/jh86l8aqbojb9lb' // Add download URL
+    },
+    {
+        title: 'Kanguva',
+        description: 'While working as a bounty hunter in Goa, Francis recalls his past life, a centuries-old tale of warrior Kanguva. Turns out, he has an old score to settle and someone dear to protect in the present.',
+        image: 'https://static.moviecrow.com/gallery/20241112/237621-Kanguva%20Suriya%20Bobby%20Deol%20SWOT.jpg',
+        genre: 'Action/Drama',
+        downloadUrl: 'https://hubcloud.ink/drive/mqhpbhleel4fqok' // Add download URL
+    }
 ];
 
-const features = [
+const topFeatures = [
     {
-        title: 'Chhaava SD',
-        description: 'Chhaava is a 2025 Indian Hindi-language historical action film based on the life of Chatrapati Sambhaji Maharaj, the second ruler of the Maratha Confederacy, played by Vicky Kaushal. It is an adaptation of the Marathi novel Chhava by Shivaji Sawant.',
-        downloadUrl: 'https://hubcloud.ink/drive/11n7jmw7mnq9xam',
+        title: 'Exclusive Content',
+        description: 'Access to exclusive movies and shows only available on AUCTUS.',
+        image: 'exclusive-content.jpg'
     },
     {
-        title: 'Kill 4K',
-        description: 'A train to New Delhi becomes a combat battleground as a pair of commandos faces off against an army of invading bandits.',
-        downloadUrl: 'https://fs-01.hubcdn.xyz/Kill.2024.2160p.iT.WEB-DL.DDP5.1.Atmos.H.265-SkymoviesHD.mkv',
+        title: '4K Streaming',
+        description: 'Enjoy your favorite movies in stunning 4K resolution.',
+        image: '4k-streaming.jpg'
     },
     {
-        title: 'Munjya 4K',
-        description: 'A young mans visit to his native village unveils a family secret and a vengeful spirit, the Munjya, who wants to get married. Now the young man must fight to protect himself and his love from Munjya',
-        downloadUrl: 'https://pub-04c8251937854358a8cf74fabe307f38.r2.dev/Munjya.2024.2160p.HEVC.WeB-DL.ATMOS.DDP5.1.x265.ESub-SkymoviesHD.mkv'
-    },
-    {
-        title: 'Chandu Champion 4K',
-        description: 'Murlikant Petkars unwavering zeal and never-say-die attitude helped India win its first individual gold medal at the Paralympic Games in 1972.',
-        downloadUrl: 'https://fs-08.hubcdn.xyz/Chandu.Champion.2024.2160p.AMZN.WEB-DL.DDP5.1.H.265-SkymoviesHD.mkv',
-    },
-    {
-        title: 'Bachubhai (GUJARATI) 4K',
-        description: 'Bachubhai is a 2023 Gujarati comedy, film directed by Rahul Bhole and Vinit Kanojia. It stars Siddharth Randeria. Apara Mehta, and others. It is produced by Jyoti Deshpande, Sharad Patel and Shreyanshi Patel. The film is going to distributed by Panorama Studios and Music has been acquired by Times Music',
-        downloadUrl: 'https://pixeldra.in/api/file/nDqLYX4S?download',
-    },
+        title: 'Offline Viewing',
+        description: 'Download movies and watch them offline anytime, anywhere.',
+        image: 'offline-viewing.jpg'
+    }
 ];
 
-// Combine movies and features into a single array for searching
-const allItems = [...movies, ...features];
-
-const movieGrid = document.getElementById('movies');
-const featureGrid = document.getElementById('top-features');
-const searchInput = document.getElementById('search-input');
-const searchResults = document.getElementById('search-results');
-const slideshowContainer = document.getElementById('slideshow');
-
-// Render movies
-movies.forEach(movie => {
-    const movieCard = document.createElement('div');
-    movieCard.classList.add('movie-card');
-
-    movieCard.innerHTML = `
-        <img src="${movie.poster}" alt="${movie.title}">
+function createMovieCard(movie) {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+        <img src="${movie.image}" alt="${movie.title}">
         <div class="movie-overlay"></div>
         <div class="movie-info">
             <h3>${movie.title}</h3>
             <p>${movie.description}</p>
-            <a href="${movie.downloadUrl}" class="download-button" target="_blank">
-                <i class="fas fa-download"></i> Download
-            </a>
+            <a href="${movie.downloadUrl}" class="download-button" download>Download</a>
         </div>
     `;
+    return card;
+}
 
-    movieGrid.appendChild(movieCard);
-    setTimeout(() => {
-        movieCard.classList.add('show');
-    }, 100);
-});
-
-// Render features with download button
-features.forEach(feature => {
-    const featureCard = document.createElement('div');
-    featureCard.classList.add('feature-card');
-
-    featureCard.innerHTML = `
+// Function to create feature cards
+function createFeatureCard(feature) {
+    const card = document.createElement('div');
+    card.className = 'feature-card';
+    card.innerHTML = `
         <img src="${feature.image}" alt="${feature.title}">
         <div class="feature-info">
             <h3>${feature.title}</h3>
             <p>${feature.description}</p>
-            ${feature.downloadUrl ? `<a href="${feature.downloadUrl}" class="download-button" target="_blank">
-                <i class="fas fa-download"></i> Download
-            </a>` : ''}
         </div>
     `;
+    return card;
+}
 
-    featureGrid.appendChild(featureCard);
-    setTimeout(() => {
-        featureCard.classList.add('show');
-    }, 100);
-});
+// Function to render movies
+function renderMovies() {
+    const movieGrid = document.getElementById('movies');
+    movies.forEach(movie => {
+        const card = createMovieCard(movie);
+        movieGrid.appendChild(card);
+    });
+}
 
-// Render slideshow
+// Function to render top features
+function renderTopFeatures() {
+    const featureGrid = document.getElementById('top-features');
+    topFeatures.forEach(feature => {
+        const card = createFeatureCard(feature);
+        featureGrid.appendChild(card);
+    });
+}
+
+// Slideshow functionality
+let currentSlide = 0;
+let slideInterval;
 const slides = [
     {
-        image: 'sky.jpg',
-        title: 'Slide 1 Title',
-        description: 'Slide 1 Description',
-        buttonText: 'Watch Now'
+        image: 'https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2024/11/varun-dhawan-s-baby-john-teaser-unveiled-1730450672.jpg',
+        title: 'Sky Force 4K',
+        description: 'An action-packed thriller about a elite fighter pilot squad.'
     },
     {
-        image: 'sky.jpg',
-        title: 'Slide 2 Title',
-        description: 'Slide 2 Description',
-        buttonText: 'Watch Now'
+        image: 'https://betultalk.com/wp-content/uploads/2025/02/1200-675-23558481-thumbnail-16x9-img.jpg',
+        title: 'The Last Voyage',
+        description: 'A sci-fi adventure about the last human spaceship searching for a new home.'
     },
     {
-        image: 'sky.jpg',
-        title: 'Slide 3 Title',
-        description: 'Slide 3 Description',
-        buttonText: 'Watch Now'
+        image: 'https://www.livehindustan.com/lh-img/smart/img/2024/11/17/1600x900/Pushpa_2_The_Rule_1731843940754_1731843941797.jpg',
+        title: 'Shadow of the Past',
+        description: 'A mystery thriller uncovering secrets from a small town\'s dark history.'
     }
 ];
 
-slides.forEach((slide, index) => {
-    const slideElement = document.createElement('div');
-    slideElement.classList.add('slide');
-    slideElement.style.backgroundImage = `url(${slide.image})`;
+function renderSlideshow() {
+    const slideshowContainer = document.getElementById('slideshow');
+    const dotsContainer = document.querySelector('.dots-container');
 
-    slideElement.innerHTML = `
-        <div class="slide-content">
-            <h2>${slide.title}</h2>
-            <p>${slide.description}</p>
-            <button>${slide.buttonText}</button>
-        </div>
-    `;
+    slides.forEach((slide, index) => {
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'slide';
+        slideDiv.style.backgroundImage = `url(${slide.image})`;
+        slideDiv.innerHTML = `
+            <div class="slide-content">
+                <h2>${slide.title}</h2>
+                <p>${slide.description}</p>
+                <a href="#" class="slide-button">Watch Now</a>
+            </div>
+        `;
+        slideshowContainer.insertBefore(slideDiv, slideshowContainer.firstChild);
 
-    slideshowContainer.appendChild(slideElement);
-});
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        dot.addEventListener('click', () => showSlide(index));
+        dotsContainer.appendChild(dot);
+    });
 
-let currentSlide = 0;
+    showSlide(currentSlide);
+    startSlideInterval();
+}
 
 function showSlide(index) {
     const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
     slides.forEach((slide, i) => {
-        slide.style.transform = `translateX(${100 * (i - index)}%)`;
+        slide.style.opacity = i === index ? '1' : '0';
     });
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+
+    currentSlide = index;
 }
 
 function nextSlide() {
@@ -146,46 +176,212 @@ function nextSlide() {
     showSlide(currentSlide);
 }
 
-setInterval(nextSlide, 5000);
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
 
-// Search functionality
-searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
+function startSlideInterval() {
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+function pauseSlideInterval() {
+    clearInterval(slideInterval);
+}
+
+// Touch support for slideshow
+let touchStartX = 0;
+let touchEndX = 0;
+
+const slideshowContainer = document.getElementById('slideshow');
+slideshowContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+
+slideshowContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchEndX < touchStartX) {
+        nextSlide();
+    } else if (touchEndX > touchStartX) {
+        prevSlide();
+    }
+}
+
+// Pause slideshow on hover
+slideshowContainer.addEventListener('mouseenter', pauseSlideInterval);
+slideshowContainer.addEventListener('mouseleave', startSlideInterval);
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+        nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+    }
+});
+
+let searchTimeout;
+
+// Debounced search function
+function debounceSearch() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        performSearch();
+    }, 300); // Adjust debounce time as needed
+}
+
+// Perform search
+function performSearch() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const searchResults = document.getElementById('search-results');
     searchResults.innerHTML = '';
 
-    if (query.length > 0) {
-        const filteredItems = allItems.filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.description.toLowerCase().includes(query)
-        );
+    if (searchInput.length === 0) {
+        searchResults.classList.remove('show');
+        return;
+    }
 
-        if (filteredItems.length > 0) {
-            filteredItems.forEach(item => {
-                const resultItem = document.createElement('div');
-                resultItem.innerHTML = `
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                    ${item.downloadUrl ? `<a href="${item.downloadUrl}" target="_blank">Download</a>` : ''}
-                `;
-                resultItem.addEventListener('click', () => {
-                    if (item.downloadUrl) {
-                        window.location.href = item.downloadUrl;
-                    }
-                });
-                searchResults.appendChild(resultItem);
+    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchInput));
+    if (filteredMovies.length > 0) {
+        filteredMovies.forEach(movie => {
+            const result = document.createElement('div');
+            const highlightedTitle = highlightMatch(movie.title, searchInput);
+            result.innerHTML = highlightedTitle;
+            result.addEventListener('click', () => {
+                alert(`You selected: ${movie.title}`);
             });
-            searchResults.classList.add('show');
-        } else {
-            searchResults.classList.remove('show');
-        }
+            searchResults.appendChild(result);
+        });
+        searchResults.classList.add('show');
     } else {
         searchResults.classList.remove('show');
+    }
+}
+
+// Highlight matching text
+function highlightMatch(text, searchTerm) {
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return text.replace(regex, '<span class="highlight-text">$1</span>');
+}
+
+// Clear search input and results
+document.getElementById('clear-search').addEventListener('click', () => {
+    document.getElementById('search-input').value = '';
+    document.getElementById('search-results').innerHTML = '';
+    document.getElementById('search-results').classList.remove('show');
+    document.getElementById('clear-search').style.display = 'none';
+});
+
+// Show/hide clear button based on input
+document.getElementById('search-input').addEventListener('input', (e) => {
+    const clearButton = document.getElementById('clear-search');
+    clearButton.style.display = e.target.value.length > 0 ? 'block' : 'none';
+    debounceSearch();
+});
+
+// Keyboard navigation for search results
+document.getElementById('search-input').addEventListener('keydown', (e) => {
+    const searchResults = document.getElementById('search-results');
+    const results = searchResults.querySelectorAll('div');
+    let currentHighlight = searchResults.querySelector('.highlight');
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (!currentHighlight) {
+            results[0].classList.add('highlight');
+        } else {
+            currentHighlight.classList.remove('highlight');
+            const next = currentHighlight.nextElementSibling;
+            if (next) {
+                next.classList.add('highlight');
+            } else {
+                results[0].classList.add('highlight');
+            }
+        }
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!currentHighlight) {
+            results[results.length - 1].classList.add('highlight');
+        } else {
+            currentHighlight.classList.remove('highlight');
+            const prev = currentHighlight.previousElementSibling;
+            if (prev) {
+                prev.classList.add('highlight');
+            } else {
+                results[results.length - 1].classList.add('highlight');
+            }
+        }
+    } else if (e.key === 'Enter' && currentHighlight) {
+        e.preventDefault();
+        currentHighlight.click();
     }
 });
 
 // Close search results when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.search-bar')) {
+document.addEventListener('click', (event) => {
+    const searchResults = document.getElementById('search-results');
+    const searchBar = document.querySelector('.search-bar');
+    if (!searchBar.contains(event.target)) {
         searchResults.classList.remove('show');
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("dark-mode-toggle");
+    const body = document.body;
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        toggle.textContent = "Dark Mode";
+    } else {
+        toggle.textContent = "Light Mode";
+    }
+
+    // Toggle theme on click
+    toggle.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            localStorage.setItem("theme", "light");
+            toggle.textContent = "Dark Mode";
+        } else {
+            localStorage.setItem("theme", "dark");
+            toggle.textContent = "Light Mode";
+        }
+    });
+});
+
+// Profile dropdown
+document.getElementById('user-profile').addEventListener('click', () => {
+    const dropdown = document.getElementById('profile-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (event) => {
+    const dropdown = document.getElementById('profile-dropdown');
+    const profile = document.getElementById('user-profile');
+    if (!profile.contains(event.target)) {
+        dropdown.style.display = 'none';
+    }
+});
+
+// Initial render
+renderMovies();
+renderTopFeatures();
+renderSlideshow();
+
+// Fetch movies from the backend
+fetch('/api/movies.php')
+    .then(response => response.json())
+    .then(data => {
+        const movieGrid = document.getElementById('movies');
+        data.forEach(movie => {
+            const card = createMovieCard(movie);
+            movieGrid.appendChild(card);
+        });
+    });
