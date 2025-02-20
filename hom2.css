@@ -1,390 +1,484 @@
-const movies = [
-    {
-        title: 'Marco',
-        description: 'Adattu is one of the most renowned gold-trading families in Kerala. Unexpectedly, an incident shakes the Adattu family. George, the head of the family, sets out to uncover the truth and find those responsible. At the same time, his younger brother, Marco, embarks on the same quest but through a different Path.',
-        image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg',
-        genre: 'Adventure',
-        downloadUrl: 'https://hubcloud.ink/drive/qycw4b4ddyxbzvc' // Add download URL
-    },
-    {
-        title: 'Baby John',
-        description: 'DCP Satya Verma fakes his own death to protect his daughter from the dangerous politician Babbar Sher. When old enemies resurface, Satya must confront his past and put everything on the line to safeguard his family.',
-        image: 'https://i.redd.it/84mju1gjr4hc1.jpeg',
-        genre: 'Action/Drama',
-        downloadUrl: 'https://hubcloud.ink/drive/anjvvvrnbnafh1v' // Add download URL
-    },
-    {
-        title: 'The Sabarmati Report',
-        description: 'A journalist investigates the 2002 Godhra train burning in Gujarat. Years later, another reporter discovers his hidden report. They uncover a conspiracy involving powerful figures, facing threats as they pursue the truth.',
-        image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg',
-        genre: 'Drama',
-        downloadUrl: 'https://hubcloud.ink/drive/zzj4ymum1c31qr1' // Add download URL
-    },
-    {
-        title: 'Pushpa 2: The Rule',
-        description: 'The clash is on as Pushpa and Bhanwar Singh continue their rivalry in this epic conclusion to the two-parted action drama.',
-        image: 'https://m.media-amazon.com/images/M/MV5BZjllNTdiM2QtYjQ0Ni00ZGM1LWFlYmUtNWY0YjMzYWIxOTYxXkEyXkFqcGc@._V1_.jpg',
-        genre: 'Action/Thriller',
-        downloadUrl: 'https://hubcloud.ink/drive/0u2t7tugc11gtdj' // Add download URL
-    },
-    {
-        title: 'Game Changer',
-        description: 'Ram Nandan, a government official, embarks on a relentless fight against corrupt politicians. Determined to bring about fair elections, he tries to revolutionise the way the government operates.',
-        image: 'https://resizing.flixster.com/oU1jMB-OmqwbQHEfEwX7ZxLJNww=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzE3NjVhNzY3LWNhM2ItNGY0ZS05Y2RkLWFjZjQ0ODdjZTI5Mi5qcGc=',
-        genre: ' Action/Thriller',
-        downloadUrl: 'https://hubcloud.ink/drive/jh86l8aqbojb9lb' // Add download URL
-    },
-    {
-        title: 'Kanguva',
-        description: 'While working as a bounty hunter in Goa, Francis recalls his past life, a centuries-old tale of warrior Kanguva. Turns out, he has an old score to settle and someone dear to protect in the present.',
-        image: 'https://static.moviecrow.com/gallery/20241112/237621-Kanguva%20Suriya%20Bobby%20Deol%20SWOT.jpg',
-        genre: 'Action/Drama',
-        downloadUrl: 'https://hubcloud.ink/drive/mqhpbhleel4fqok' // Add download URL
-    }
-];
-
-const topFeatures = [
-    {
-        title: 'Exclusive Content',
-        description: 'Access to exclusive movies and shows only available on AUCTUS.',
-        image: 'exclusive-content.jpg'
-    },
-    {
-        title: '4K Streaming',
-        description: 'Enjoy your favorite movies in stunning 4K resolution.',
-        image: '4k-streaming.jpg'
-    },
-    {
-        title: 'Offline Viewing',
-        description: 'Download movies and watch them offline anytime, anywhere.',
-        image: 'offline-viewing.jpg'
-    }
-];
-
-function createMovieCard(movie) {
-    const card = document.createElement('div');
-    card.className = 'movie-card';
-    card.innerHTML = `
-        <img src="${movie.image}" alt="${movie.title}">
-        <div class="movie-overlay"></div>
-        <div class="movie-info">
-            <h3>${movie.title}</h3>
-            <p>${movie.description}</p>
-            <a href="${movie.downloadUrl}" class="download-button" download>Download</a>
-        </div>
-    `;
-    return card;
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-// Function to create feature cards
-function createFeatureCard(feature) {
-    const card = document.createElement('div');
-    card.className = 'feature-card';
-    card.innerHTML = `
-        <img src="${feature.image}" alt="${feature.title}">
-        <div class="feature-info">
-            <h3>${feature.title}</h3>
-            <p>${feature.description}</p>
-        </div>
-    `;
-    return card;
+body {
+    background-color: #141414;
+    color: #fff;
 }
 
-// Function to render movies
-function renderMovies() {
-    const movieGrid = document.getElementById('movies');
-    movies.forEach(movie => {
-        const card = createMovieCard(movie);
-        movieGrid.appendChild(card);
-    });
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-// Function to render top features
-function renderTopFeatures() {
-    const featureGrid = document.getElementById('top-features');
-    topFeatures.forEach(feature => {
-        const card = createFeatureCard(feature);
-        featureGrid.appendChild(card);
-    });
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-// Slideshow functionality
-let currentSlide = 0;
-let slideInterval;
-const slides = [
-    {
-        image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg', // Landscape poster
-        title: 'Marco',
-        description: 'Adattu is one of the most renowned gold-trading families in Kerala. Unexpectedly, an incident shakes the Adattu family. George, the head of the family, sets out to uncover the truth and find those responsible. At the same time, his younger brother, Marco, embarks on the same quest but through a different Path.'
-    },
-    {
-        image: 'https://i.redd.it/84mju1gjr4hc1.jpeg', // Landscape poster
-        title: 'Baby John',
-        description: 'DCP Satya Verma fakes his own death to protect his daughter from the dangerous politician Babbar Sher. When old enemies resurface, Satya must confront his past and put everything on the line to safeguard his family.'
-    },
-    {
-        image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg', // Landscape poster
-        title: 'The Sabarmati Report',
-        description: 'A journalist investigates the 2002 Godhra train burning in Gujarat. Years later, another reporter discovers his hidden report. They uncover a conspiracy involving powerful figures, facing threats as they pursue the truth.'
-    }
-];
-
-function renderSlideshow() {
-    const slideshowContainer = document.getElementById('slideshow');
-    const dotsContainer = document.querySelector('.dots-container');
-
-    slides.forEach((slide, index) => {
-        const slideDiv = document.createElement('div');
-        slideDiv.className = 'slide';
-        slideDiv.style.backgroundImage = `url(${slide.image})`;
-        slideDiv.innerHTML = `
-            <div class="slide-content">
-                <h2>${slide.title}</h2>
-                <p>${slide.description}</p>
-                <a href="#" class="slide-button">Watch Now</a>
-            </div>
-        `;
-        slideshowContainer.insertBefore(slideDiv, slideshowContainer.firstChild);
-
-        const dot = document.createElement('span');
-        dot.className = 'dot';
-        dot.addEventListener('click', () => showSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-
-    showSlide(currentSlide);
-    startSlideInterval();
-}
-function showSlide(index) {
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-
-    slides.forEach((slide, i) => {
-        slide.style.opacity = i === index ? '1' : '0';
-    });
-
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-
-    currentSlide = index;
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e50914;
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
 }
 
-function startSlideInterval() {
-    slideInterval = setInterval(nextSlide, 5000);
+nav ul li a:hover {
+    color: #e50914;
 }
 
-function pauseSlideInterval() {
-    clearInterval(slideInterval);
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
 }
 
-// Touch support for slideshow
-let touchStartX = 0;
-let touchEndX = 0;
-
-const slideshowContainer = document.getElementById('slideshow');
-slideshowContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-});
-
-slideshowContainer.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    if (touchEndX < touchStartX) {
-        nextSlide();
-    } else if (touchEndX > touchStartX) {
-        prevSlide();
-    }
+.search-bar input {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s;
+    width: 200px;
 }
 
-// Pause slideshow on hover
-slideshowContainer.addEventListener('mouseenter', pauseSlideInterval);
-slideshowContainer.addEventListener('mouseleave', startSlideInterval);
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-        nextSlide();
-    } else if (e.key === 'ArrowLeft') {
-        prevSlide();
-    }
-});
-
-let searchTimeout;
-
-// Debounced search function
-function debounceSearch() {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-        performSearch();
-    }, 300); // Adjust debounce time as needed
+.search-bar input::placeholder {
+    color: #b3b3b3;
 }
 
-// Perform search
-function performSearch() {
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const searchResults = document.getElementById('search-results');
-    searchResults.innerHTML = '';
-
-    if (searchInput.length === 0) {
-        searchResults.classList.remove('show');
-        return;
-    }
-
-    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchInput));
-    if (filteredMovies.length > 0) {
-        filteredMovies.forEach(movie => {
-            const result = document.createElement('div');
-            const highlightedTitle = highlightMatch(movie.title, searchInput);
-            result.innerHTML = highlightedTitle;
-            result.addEventListener('click', () => {
-                alert(`You selected: ${movie.title}`);
-            });
-            searchResults.appendChild(result);
-        });
-        searchResults.classList.add('show');
-    } else {
-        searchResults.classList.remove('show');
-    }
+.search-bar input:focus {
+    background-color: #444;
+    outline: none;
 }
 
-// Highlight matching text
-function highlightMatch(text, searchTerm) {
-    const regex = new RegExp(`(${searchTerm})`, 'gi');
-    return text.replace(regex, '<span class="highlight-text">$1</span>');
+.search-bar button {
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #e50914;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-// Clear search input and results
-document.getElementById('clear-search').addEventListener('click', () => {
-    document.getElementById('search-input').value = '';
-    document.getElementById('search-results').innerHTML = '';
-    document.getElementById('search-results').classList.remove('show');
-    document.getElementById('clear-search').style.display = 'none';
-});
+.search-bar button:hover {
+    background-color: #f40612;
+    transform: scale(1.1);
+}
 
-// Show/hide clear button based on input
-document.getElementById('search-input').addEventListener('input', (e) => {
-    const clearButton = document.getElementById('clear-search');
-    clearButton.style.display = e.target.value.length > 0 ? 'block' : 'none';
-    debounceSearch();
-});
+.clear-button {
+    display: none; /* Hidden by default */
+    background-color: #666;
+}
 
-// Keyboard navigation for search results
-document.getElementById('search-input').addEventListener('keydown', (e) => {
-    const searchResults = document.getElementById('search-results');
-    const results = searchResults.querySelectorAll('div');
-    let currentHighlight = searchResults.querySelector('.highlight');
+.clear-button:hover {
+    background-color: #888;
+}
 
-    if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (!currentHighlight) {
-            results[0].classList.add('highlight');
-        } else {
-            currentHighlight.classList.remove('highlight');
-            const next = currentHighlight.nextElementSibling;
-            if (next) {
-                next.classList.add('highlight');
-            } else {
-                results[0].classList.add('highlight');
-            }
-        }
-    } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (!currentHighlight) {
-            results[results.length - 1].classList.add('highlight');
-        } else {
-            currentHighlight.classList.remove('highlight');
-            const prev = currentHighlight.previousElementSibling;
-            if (prev) {
-                prev.classList.add('highlight');
-            } else {
-                results[results.length - 1].classList.add('highlight');
-            }
-        }
-    } else if (e.key === 'Enter' && currentHighlight) {
-        e.preventDefault();
-        currentHighlight.click();
-    }
-});
+.search-results {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
 
-// Close search results when clicking outside
-document.addEventListener('click', (event) => {
-    const searchResults = document.getElementById('search-results');
-    const searchBar = document.querySelector('.search-bar');
-    if (!searchBar.contains(event.target)) {
-        searchResults.classList.remove('show');
-    }
-});
+.search-results.show {
+    display: block;
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.getElementById("dark-mode-toggle");
-    const body = document.body;
+.search-results div {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    // Load saved theme
-    if (localStorage.getItem("theme") === "light") {
-        body.classList.add("light-mode");
-        toggle.textContent = "Dark Mode";
-    } else {
-        toggle.textContent = "Light Mode";
+.search-results div:hover {
+    background-color: #333;
+}
+
+.search-results div.highlight {
+    background-color: #444;
+}
+
+.highlight-text {
+    color: #e50914;
+    font-weight: bold;
+}
+
+.user-profile {
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.user-profile:hover {
+    color: #e50914;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.profile-dropdown a:hover {
+    background-color: #333;
+}
+
+.hero {
+    height: 60vh;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 24px;
+    color: #ccc;
+}
+
+.movies, .top-features {
+    padding: 40px 20px;
+}
+
+.movies h2, .top-features h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.movie-grid, .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.movie-card, .feature-card {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover, .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover img {
+    transform: scale(1.05);
+}
+
+.movie-card {
+    position: relative;
+}
+
+.movie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+}
+
+.movie-info {
+    position: relative;
+    z-index: 1;
+}
+
+.movie-card .movie-info, .feature-card .feature-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.movie-card .movie-info h3, .feature-card .feature-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.movie-card .movie-info p, .feature-card .feature-info p {
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #e50914;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 10px;
+}
+
+.download-button:hover {
+    background-color: #f40612;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #1f1f1f;
+    margin-top: 40px;
+}
+
+/* Dark/Light Mode Toggle */
+body.light-mode .movie-card, body.light-mode .feature-card {
+    background-color: #fff;
+    color: #333;
+}
+
+body.light-mode .movie-card h3, body.light-mode .feature-card h3 {
+    color: #333;
+}
+
+body.light-mode .movie-card p, body.light-mode .feature-card p {
+    color: #666;
+}
+
+body {
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .movie-grid, .feature-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
-    // Toggle theme on click
-    toggle.addEventListener("click", () => {
-        body.classList.toggle("light-mode");
-        if (body.classList.contains("light-mode")) {
-            localStorage.setItem("theme", "light");
-            toggle.textContent = "Dark Mode";
-        } else {
-            localStorage.setItem("theme", "dark");
-            toggle.textContent = "Light Mode";
-        }
-    });
-});
-
-// Profile dropdown
-document.getElementById('user-profile').addEventListener('click', () => {
-    const dropdown = document.getElementById('profile-dropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (event) => {
-    const dropdown = document.getElementById('profile-dropdown');
-    const profile = document.getElementById('user-profile');
-    if (!profile.contains(event.target)) {
-        dropdown.style.display = 'none';
+    .hero h1 {
+        font-size: 36px;
     }
-});
 
-// Initial render
-renderMovies();
-renderTopFeatures();
-renderSlideshow();
+    .hero p {
+        font-size: 18px;
+    }
+}
 
-// Fetch movies from the backend
-fetch('/api/movies.php')
-    .then(response => response.json())
-    .then(data => {
-        const movieGrid = document.getElementById('movies');
-        data.forEach(movie => {
-            const card = createMovieCard(movie);
-            movieGrid.appendChild(card);
-        });
-    });
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 60vh; /* Adjust height for landscape */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #1f1f1f; /* Add background color */
+}
 
+/* Slides */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Slide Content */
+.slide-content {
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    width: 40%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+    padding: 20px;
+    text-align: left;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.slide-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.slide-content .slide-button {
+    background-color: #e50914;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.slide-content .slide-button:hover {
+    background-color: #f40612;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 40vh; /* Adjust height for smaller screens */
+    }
+
+    .slide-content {
+        width: 80%; /* Increase width for better readability on mobile */
+        left: 10%;
+        bottom: 10%;
+    }
+
+    .slide-content h2 {
+        font-size: 1.8rem; /* Adjust font size for smaller screens */
+    }
+
+    .slide-content p {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+}
+
+/* Navigation Arrows */
+.slideshow-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.slideshow-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    font-size: 1.5rem;
+}
+
+.slideshow-nav button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots Container */
+.dots-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #e50914;
+}
+
+.auth-form {
+    animation: fadeIn 1s ease-in-out;
+}
 
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(-20px); }
