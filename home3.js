@@ -113,19 +113,19 @@ let currentSlide = 0;
 let slideInterval;
 const slides = [
     {
-        image: 'https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2024/11/varun-dhawan-s-baby-john-teaser-unveiled-1730450672.jpg',
-        title: 'Sky Force 4K',
-        description: 'An action-packed thriller about a elite fighter pilot squad.'
+        image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg', // Landscape poster
+        title: 'Marco',
+        description: 'Adattu is one of the most renowned gold-trading families in Kerala. Unexpectedly, an incident shakes the Adattu family. George, the head of the family, sets out to uncover the truth and find those responsible. At the same time, his younger brother, Marco, embarks on the same quest but through a different Path.'
     },
     {
-        image: 'https://betultalk.com/wp-content/uploads/2025/02/1200-675-23558481-thumbnail-16x9-img.jpg',
-        title: 'The Last Voyage',
-        description: 'A sci-fi adventure about the last human spaceship searching for a new home.'
+        image: 'https://i.redd.it/84mju1gjr4hc1.jpeg', // Landscape poster
+        title: 'Baby John',
+        description: 'DCP Satya Verma fakes his own death to protect his daughter from the dangerous politician Babbar Sher. When old enemies resurface, Satya must confront his past and put everything on the line to safeguard his family.'
     },
     {
-        image: 'https://www.livehindustan.com/lh-img/smart/img/2024/11/17/1600x900/Pushpa_2_The_Rule_1731843940754_1731843941797.jpg',
-        title: 'Shadow of the Past',
-        description: 'A mystery thriller uncovering secrets from a small town\'s dark history.'
+        image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg', // Landscape poster
+        title: 'The Sabarmati Report',
+        description: 'A journalist investigates the 2002 Godhra train burning in Gujarat. Years later, another reporter discovers his hidden report. They uncover a conspiracy involving powerful figures, facing threats as they pursue the truth.'
     }
 ];
 
@@ -155,7 +155,6 @@ function renderSlideshow() {
     showSlide(currentSlide);
     startSlideInterval();
 }
-
 function showSlide(index) {
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -385,3 +384,9 @@ fetch('/api/movies.php')
             movieGrid.appendChild(card);
         });
     });
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
