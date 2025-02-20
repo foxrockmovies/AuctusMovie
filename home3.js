@@ -385,8 +385,24 @@ fetch('/api/movies.php')
         });
     });
 
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAp0P8C98oUGTwfBc31ElXVuEs9J0nuoRc",
+  authDomain: "auctus-b6689.firebaseapp.com",
+  projectId: "auctus-b6689",
+  storageBucket: "auctus-b6689.firebasestorage.app",
+  messagingSenderId: "229548942829",
+  appId: "1:229548942829:web:7bceeefb37861d62bf33e4",
+  measurementId: "G-G1TZT8P1B0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
