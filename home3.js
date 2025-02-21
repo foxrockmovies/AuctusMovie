@@ -4,42 +4,42 @@ const movies = [
         description: 'Adattu is one of the most renowned gold-trading families in Kerala. Unexpectedly, an incident shakes the Adattu family. George, the head of the family, sets out to uncover the truth and find those responsible. At the same time, his younger brother, Marco, embarks on the same quest but through a different Path.',
         image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg',
         genre: 'Adventure',
-        downloadUrl: 'https://hubcloud.ink/drive/qycw4b4ddyxbzvc' // Add download URL
+        downloadUrl: 'https://hubcloud.ink/drive/qycw4b4ddyxbzvc'
     },
     {
         title: 'Baby John',
         description: 'DCP Satya Verma fakes his own death to protect his daughter from the dangerous politician Babbar Sher. When old enemies resurface, Satya must confront his past and put everything on the line to safeguard his family.',
         image: 'https://i.redd.it/84mju1gjr4hc1.jpeg',
         genre: 'Action/Drama',
-        downloadUrl: 'https://hubcloud.ink/drive/anjvvvrnbnafh1v' // Add download URL
+        downloadUrl: 'https://hubcloud.ink/drive/anjvvvrnbnafh1v'
     },
     {
         title: 'The Sabarmati Report',
         description: 'A journalist investigates the 2002 Godhra train burning in Gujarat. Years later, another reporter discovers his hidden report. They uncover a conspiracy involving powerful figures, facing threats as they pursue the truth.',
         image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg',
         genre: 'Drama',
-        downloadUrl: 'https://hubcloud.ink/drive/zzj4ymum1c31qr1' // Add download URL
+        downloadUrl: 'https://hubcloud.ink/drive/zzj4ymum1c31qr1'
     },
     {
         title: 'Pushpa 2: The Rule',
         description: 'The clash is on as Pushpa and Bhanwar Singh continue their rivalry in this epic conclusion to the two-parted action drama.',
         image: 'https://m.media-amazon.com/images/M/MV5BZjllNTdiM2QtYjQ0Ni00ZGM1LWFlYmUtNWY0YjMzYWIxOTYxXkEyXkFqcGc@._V1_.jpg',
         genre: 'Action/Thriller',
-        downloadUrl: 'https://hubcloud.ink/drive/0u2t7tugc11gtdj' // Add download URL
+        downloadUrl: 'https://hubcloud.ink/drive/0u2t7tugc11gtdj'
     },
     {
         title: 'Game Changer',
         description: 'Ram Nandan, a government official, embarks on a relentless fight against corrupt politicians. Determined to bring about fair elections, he tries to revolutionise the way the government operates.',
         image: 'https://resizing.flixster.com/oU1jMB-OmqwbQHEfEwX7ZxLJNww=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzE3NjVhNzY3LWNhM2ItNGY0ZS05Y2RkLWFjZjQ0ODdjZTI5Mi5qcGc=',
-        genre: ' Action/Thriller',
-        downloadUrl: 'https://hubcloud.ink/drive/jh86l8aqbojb9lb' // Add download URL
+        genre: 'Action/Thriller',
+        downloadUrl: 'https://hubcloud.ink/drive/jh86l8aqbojb9lb'
     },
     {
         title: 'Kanguva',
         description: 'While working as a bounty hunter in Goa, Francis recalls his past life, a centuries-old tale of warrior Kanguva. Turns out, he has an old score to settle and someone dear to protect in the present.',
         image: 'https://static.moviecrow.com/gallery/20241112/237621-Kanguva%20Suriya%20Bobby%20Deol%20SWOT.jpg',
         genre: 'Action/Drama',
-        downloadUrl: 'https://hubcloud.ink/drive/mqhpbhleel4fqok' // Add download URL
+        downloadUrl: 'https://hubcloud.ink/drive/mqhpbhleel4fqok'
     }
 ];
 
@@ -76,7 +76,6 @@ function createMovieCard(movie) {
     return card;
 }
 
-// Function to create feature cards
 function createFeatureCard(feature) {
     const card = document.createElement('div');
     card.className = 'feature-card';
@@ -90,7 +89,6 @@ function createFeatureCard(feature) {
     return card;
 }
 
-// Function to render movies
 function renderMovies() {
     const movieGrid = document.getElementById('movies');
     movies.forEach(movie => {
@@ -99,7 +97,6 @@ function renderMovies() {
     });
 }
 
-// Function to render top features
 function renderTopFeatures() {
     const featureGrid = document.getElementById('top-features');
     topFeatures.forEach(feature => {
@@ -108,22 +105,21 @@ function renderTopFeatures() {
     });
 }
 
-// Slideshow functionality
 let currentSlide = 0;
 let slideInterval;
 const slides = [
     {
-        image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg', // Landscape poster
+        image: 'https://m.media-amazon.com/images/M/MV5BNTVmNDVhMDEtNDMyNy00NTY0LWJkNzEtY2E5ZTVlZDRmYWY3XkEyXkFqcGc@._V1_.jpg',
         title: 'Marco',
         description: 'Adattu is one of the most renowned gold-trading families in Kerala. Unexpectedly, an incident shakes the Adattu family. George, the head of the family, sets out to uncover the truth and find those responsible. At the same time, his younger brother, Marco, embarks on the same quest but through a different Path.'
     },
     {
-        image: 'https://i.redd.it/84mju1gjr4hc1.jpeg', // Landscape poster
+        image: 'https://i.redd.it/84mju1gjr4hc1.jpeg',
         title: 'Baby John',
         description: 'DCP Satya Verma fakes his own death to protect his daughter from the dangerous politician Babbar Sher. When old enemies resurface, Satya must confront his past and put everything on the line to safeguard his family.'
     },
     {
-        image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg', // Landscape poster
+        image: 'https://assets.voxcinemas.com/posters/P_HO00011674_1731043173783.jpg',
         title: 'The Sabarmati Report',
         description: 'A journalist investigates the 2002 Godhra train burning in Gujarat. Years later, another reporter discovers his hidden report. They uncover a conspiracy involving powerful figures, facing threats as they pursue the truth.'
     }
@@ -155,6 +151,7 @@ function renderSlideshow() {
     showSlide(currentSlide);
     startSlideInterval();
 }
+
 function showSlide(index) {
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -188,7 +185,6 @@ function pauseSlideInterval() {
     clearInterval(slideInterval);
 }
 
-// Touch support for slideshow
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -210,11 +206,9 @@ function handleSwipe() {
     }
 }
 
-// Pause slideshow on hover
 slideshowContainer.addEventListener('mouseenter', pauseSlideInterval);
 slideshowContainer.addEventListener('mouseleave', startSlideInterval);
 
-// Keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') {
         nextSlide();
@@ -225,15 +219,13 @@ document.addEventListener('keydown', (e) => {
 
 let searchTimeout;
 
-// Debounced search function
 function debounceSearch() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
         performSearch();
-    }, 300); // Adjust debounce time as needed
+    }, 300);
 }
 
-// Perform search
 function performSearch() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
     const searchResults = document.getElementById('search-results');
@@ -261,13 +253,11 @@ function performSearch() {
     }
 }
 
-// Highlight matching text
 function highlightMatch(text, searchTerm) {
     const regex = new RegExp(`(${searchTerm})`, 'gi');
     return text.replace(regex, '<span class="highlight-text">$1</span>');
 }
 
-// Clear search input and results
 document.getElementById('clear-search').addEventListener('click', () => {
     document.getElementById('search-input').value = '';
     document.getElementById('search-results').innerHTML = '';
@@ -275,14 +265,12 @@ document.getElementById('clear-search').addEventListener('click', () => {
     document.getElementById('clear-search').style.display = 'none';
 });
 
-// Show/hide clear button based on input
 document.getElementById('search-input').addEventListener('input', (e) => {
     const clearButton = document.getElementById('clear-search');
     clearButton.style.display = e.target.value.length > 0 ? 'block' : 'none';
     debounceSearch();
 });
 
-// Keyboard navigation for search results
 document.getElementById('search-input').addEventListener('keydown', (e) => {
     const searchResults = document.getElementById('search-results');
     const results = searchResults.querySelectorAll('div');
@@ -320,7 +308,6 @@ document.getElementById('search-input').addEventListener('keydown', (e) => {
     }
 });
 
-// Close search results when clicking outside
 document.addEventListener('click', (event) => {
     const searchResults = document.getElementById('search-results');
     const searchBar = document.querySelector('.search-bar');
@@ -333,7 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("dark-mode-toggle");
     const body = document.body;
 
-    // Load saved theme
     if (localStorage.getItem("theme") === "light") {
         body.classList.add("light-mode");
         toggle.textContent = "Dark Mode";
@@ -341,7 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle.textContent = "Light Mode";
     }
 
-    // Toggle theme on click
     toggle.addEventListener("click", () => {
         body.classList.toggle("light-mode");
         if (body.classList.contains("light-mode")) {
@@ -354,13 +339,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Profile dropdown
 document.getElementById('user-profile').addEventListener('click', () => {
     const dropdown = document.getElementById('profile-dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-// Close dropdown when clicking outside
 document.addEventListener('click', (event) => {
     const dropdown = document.getElementById('profile-dropdown');
     const profile = document.getElementById('user-profile');
@@ -369,12 +352,10 @@ document.addEventListener('click', (event) => {
     }
 });
 
-// Initial render
 renderMovies();
 renderTopFeatures();
 renderSlideshow();
 
-// Fetch movies from the backend
 fetch('/api/movies.php')
     .then(response => response.json())
     .then(data => {
@@ -385,14 +366,9 @@ fetch('/api/movies.php')
         });
     });
 
-    // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAp0P8C98oUGTwfBc31ElXVuEs9J0nuoRc",
   authDomain: "auctus-b6689.firebaseapp.com",
@@ -403,6 +379,5 @@ const firebaseConfig = {
   measurementId: "G-G1TZT8P1B0"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
