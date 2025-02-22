@@ -87,31 +87,38 @@
             <div class="user-profile" id="user-profile">
                 <i class="fas fa-user-circle"></i>
                 <div class="profile-dropdown" id="profile-dropdown">
-                    <a href="#" id="dark-mode-toggle">Dark Mode</a>
-                    <a href="#" id="edit-profile">Edit Profile</a>
+                    <a href="#" id="dark-mode-toggle">
+                        <i class="fas fa-moon"></i> Light Mode
+                    </a>
+                    <a href="#" id="edit-profile">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </a>
+                    <a href="#" id="logout" class="logout">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </a>
                 </div>
             </div>
         </header>
-  <!-- Slideshow Container -->
-<div class="slideshow-container" id="slideshow">
-    <!-- Slides will be dynamically added here -->
-    <div class="slideshow-nav">
-        <button class="prev" onclick="prevSlide()">&#10094;</button>
-        <button class="next" onclick="nextSlide()">&#10095;</button>
-    </div>
-    <!-- Dots for Slide Indicators -->
-    <div class="dots-container"></div>
-</div>
-
+        <!-- Slideshow Container -->
+        <div class="slideshow-container" id="slideshow">
+            <!-- Slides will be dynamically added here -->
+            <div class="slideshow-nav">
+                <button class="prev" onclick="prevSlide()">&#10094;</button>
+                <button class="next" onclick="nextSlide()">&#10095;</button>
+            </div>
+            <!-- Dots for Slide Indicators -->
+            <div class="dots-container"></div>
+        </div>
         <section class="movies">
-            <h2>Movies</h2>
-            <div class="movie-grid" id="movies"></div>
+            <h2>Trending Movies</h2>
+            <div class="movie-grid" id="movies">
+                <!-- Movie cards will be dynamically generated here -->
+            </div>
         </section>
         <section class="top-features">
             <h2>Top Features</h2>
             <div class="feature-grid" id="top-features"></div>
         </section>
-
         <footer>
             <p>&copy; 2025 AUCTUS. All rights reserved.</p>
         </footer>
@@ -123,8 +130,5 @@
             introText.style.display = 'none';
         });
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <img src="image.jpg" srcset="image-small.jpg 480w, image-medium.jpg 768w, image-large.jpg 1200w" alt="Description">
-    firebase deploy --only hosting:auctusmovies
 </body>
 </html>
