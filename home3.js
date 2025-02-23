@@ -272,14 +272,14 @@ function toggleFullscreen() {
 
 renderSlideshow();
 
-// Search Functionality 
+// Search Functionality with Auto-Search and Suggestions
 let searchTimeout;
 
 function debounceSearch() {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
         performSearch();
-    }, 300);
+    }, 300); // Adjust the delay as needed
 }
 
 function performSearch() {
@@ -315,17 +315,17 @@ function highlightMatch(text, searchTerm) {
     return text.replace(regex, '<span class="highlight-text">$1</span>');
 }
 
+document.getElementById('search-input').addEventListener('input', (e) => {
+    const clearButton = document.getElementById('clear-search');
+    clearButton.style.display = e.target.value.length > 0 ? 'block' : 'none';
+    debounceSearch();
+});
+
 document.getElementById('clear-search').addEventListener('click', () => {
     document.getElementById('search-input').value = '';
     document.getElementById('search-results').innerHTML = '';
     document.getElementById('search-results').classList.remove('show');
     document.getElementById('clear-search').style.display = 'none';
-});
-
-document.getElementById('search-input').addEventListener('input', (e) => {
-    const clearButton = document.getElementById('clear-search');
-    clearButton.style.display = e.target.value.length > 0 ? 'block' : 'none';
-    debounceSearch();
 });
 
 document.getElementById('search-input').addEventListener('keydown', (e) => {
@@ -373,7 +373,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
-// Dark Mode Toggle
+// Enhanced Light Mode Toggle
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("dark-mode-toggle");
     const body = document.body;
@@ -397,6 +397,76 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Enhanced Edit Profile Functionality with Animation
+document.getElementById('edit-profile').addEventListener('click', () => {
+    const dropdown = document.getElementById('profile-dropdown');
+    const editForm = document.createElement('div');
+    editForm.className = 'edit-profile-form';
+    editForm.innerHTML = `
+        <input type="text" id="edit-name" placeholder="Enter your name">
+        <input type="email" id="edit-email" placeholder="Enter your email">
+        <button onclick="saveProfile()">Save</button>
+    `;
+    
+    // Append the form to the dropdown
+    dropdown.appendChild(editForm);
+
+    // Trigger the fade-in animation
+    setTimeout(() => {
+        editForm.style.opacity = '1';
+        editForm.style.transform = 'translateY(0)';
+    }, 10); // Small delay to allow the browser to render the element before applying the transition
+});
+
+function saveProfile() {
+    const name = document.getElementById('edit-name').value;
+    const email = document.getElementById('edit-email').value;
+
+    if (name || email) {
+        alert(`Profile Updated!\nName: ${name}\nEmail: ${email}`);
+    } else {
+        alert('Please fill in at least one field.');
+    }
+
+    // Remove the form with fade-out animation
+    const editForm = document.querySelector('.edit-profile-form');
+    editForm.style.opacity = '0';
+    editForm.style.transform = 'translateY(-10px)';
+
+    // Wait for the animation to complete before removing the form
+    setTimeout(() => {
+        editForm.remove();
+    }, 300); // Match this duration with the CSS transition duration
+}
+
+// Enhanced Logout Functionality with Confirmation Modal
+document.getElementById('logout').addEventListener('click', () => {
+    const modal = document.createElement('div');
+    modal.className = 'confirmation-modal';
+    modal.innerHTML = `
+        <div class="confirmation-modal-content">
+            <h3>Are you sure you want to log out?</h3>
+            <button class="confirm" onclick="confirmLogout()">Yes, Log Out</button>
+            <button class="cancel" onclick="closeModal()">Cancel</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    modal.classList.add('show');
+});
+
+function confirmLogout() {
+    alert('You have been logged out.');
+    window.location.href = '/login';
+    closeModal();
+}
+
+function closeModal() {
+    const modal = document.querySelector('.confirmation-modal');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.remove();
+    }, 300); // Match this duration with the CSS transition duration
+}
 // Profile Dropdown with Animation
 document.getElementById('user-profile').addEventListener('click', () => {
     const dropdown = document.getElementById('profile-dropdown');
@@ -442,5 +512,682 @@ document.getElementById('logout').addEventListener('click', () => {
     if (confirm('Are you sure you want to log out?')) {
         alert('You have been logged out.');
         window.location.href = '/login';
+    }
+});
+function showLoginForm() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('register-form').style.display = 'none';
+}
+
+function showRegisterForm() {
+    document.getElementById('register-form').style.display = 'block';
+    document.getElementById('login-form').style.display = 'none';
+}
+
+function login() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert('Login successful!');
+            // Store user data in localStorage or session
+            localStorage.setItem('user', JSON.stringify(data));
+            // Redirect or update UI
+        }
+    });
+}
+
+function register() {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+    const email = document.getElementById('register-email').value;
+
+    fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert('Registration successful!');
+            showLoginForm();
+        }
+    });
+}
+// Edit Profile Functionality with Animation
+document.getElementById('edit-profile').addEventListener('click', () => {
+    const dropdown = document.getElementById('profile-dropdown');
+    const editForm = document.createElement('div');
+    editForm.className = 'edit-profile-form';
+    editForm.innerHTML = `
+        <input type="text" id="edit-name" placeholder="Enter your name">
+        <input type="email" id="edit-email" placeholder="Enter your email">
+        <button onclick="saveProfile()">Save</button>
+    `;
+    
+    // Append the form to the dropdown
+    dropdown.appendChild(editForm);
+
+    // Trigger the fade-in animation
+    setTimeout(() => {
+        editForm.style.opacity = '1';
+        editForm.style.transform = 'translateY(0)';
+    }, 10); // Small delay to allow the browser to render the element before applying the transition
+});
+
+function saveProfile() {
+    const name = document.getElementById('edit-name').value;
+    const email = document.getElementById('edit-email').value;
+
+    if (name || email) {
+        alert(`Profile Updated!\nName: ${name}\nEmail: ${email}`);
+    } else {
+        alert('Please fill in at least one field.');
+    }
+
+    // Remove the form with fade-out animation
+    const editForm = document.querySelector('.edit-profile-form');
+    editForm.style.opacity = '0';
+    editForm.style.transform = 'translateY(-10px)';
+
+    // Wait for the animation to complete before removing the form
+    setTimeout(() => {
+        editForm.remove();
+    }, 300); // Match this duration with the CSS transition duration
+}
+
+// Auct AI Bot Functionality
+const auctAiBot = document.getElementById('auct-ai-bot');
+const auctAiMessages = document.getElementById('auct-ai-messages');
+const auctAiInput = document.getElementById('auct-ai-input');
+const auctAiSend = document.getElementById('auct-ai-send');
+const closeAiBot = document.getElementById('close-ai-bot');
+
+// Toggle AI Bot
+document.addEventListener('DOMContentLoaded', () => {
+    const aiBotToggle = document.createElement('button');
+    aiBotToggle.id = 'ai-bot-toggle';
+    aiBotToggle.innerHTML = '<i class="fas fa-robot"></i> Auct AI';
+    aiBotToggle.style.position = 'fixed';
+    aiBotToggle.style.bottom = '20px';
+    aiBotToggle.style.right = '20px';
+    aiBotToggle.style.padding = '10px 20px';
+    aiBotToggle.style.backgroundColor = '#e50914';
+    aiBotToggle.style.color = '#fff';
+    aiBotToggle.style.border = 'none';
+    aiBotToggle.style.borderRadius = '25px';
+    aiBotToggle.style.cursor = 'pointer';
+    aiBotToggle.style.zIndex = '1000';
+    aiBotToggle.style.transition = 'transform 0.3s, background-color 0.3s';
+    aiBotToggle.addEventListener('click', () => {
+        auctAiBot.classList.toggle('show');
+    });
+    aiBotToggle.addEventListener('mouseenter', () => {
+        aiBotToggle.style.transform = 'scale(1.1)';
+    });
+    aiBotToggle.addEventListener('mouseleave', () => {
+        aiBotToggle.style.transform = 'scale(1)';
+    });
+    document.body.appendChild(aiBotToggle);
+});
+
+// Close AI Bot
+closeAiBot.addEventListener('click', () => {
+    auctAiBot.classList.remove('show');
+});
+
+// Send Message to Auct AI
+auctAiSend.addEventListener('click', () => {
+    const userMessage = auctAiInput.value.trim();
+    if (userMessage) {
+        addMessage(userMessage, 'user');
+        auctAiInput.value = '';
+        setTimeout(() => {
+            handleAuctAiResponse(userMessage);
+        }, 500);
+    }
+});
+
+// Handle Auct AI Response
+async function handleAuctAiResponse(userMessage) {
+    let botResponse = '';
+    const query = userMessage.toLowerCase();
+
+    // Top 7 AI Features
+    if (query.includes('recommend')) {
+        botResponse = 'Here are some movie recommendations: Marco, Baby John, Pushpa 2.';
+    } else if (query.includes('search')) {
+        const movieName = query.replace('search', '').trim();
+        botResponse = await searchMovie(movieName);
+    } else if (query.includes('watchlist')) {
+        botResponse = 'You can manage your watchlist from the "My List" section.';
+    } else if (query.includes('trending')) {
+        botResponse = 'Trending movies: Marco, Baby John, Pushpa 2.';
+    } else if (query.includes('review')) {
+        botResponse = 'Marco has a rating of 4.5/5. Baby John has a rating of 4.0/5.';
+    } else if (query.includes('light mode') || query.includes('dark mode')) {
+        botResponse = 'You can toggle light/dark mode from the profile dropdown.';
+    } else {
+        botResponse = 'I’m here to help! Ask me about movies, recommendations, or your watchlist.';
+    }
+
+    addMessage(botResponse, 'bot');
+}
+
+// Search Movie Function (IMDb Integration)
+async function searchMovie(movieName) {
+    const apiKey = 'YOUR_IMDB_API_KEY'; // Replace with your IMDb API key
+    const url = `https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.results.length > 0) {
+            const movie = data.results[0];
+            return `Here's what I found: ${movie.title} (${movie.description}).`;
+        } else {
+            return 'Sorry, I couldn\'t find any movies matching your query.';
+        }
+    } catch (error) {
+        return 'Sorry, there was an error processing your request.';
+    }
+}
+
+// Add Message to Chat
+function addMessage(text, sender) {
+    const message = document.createElement('div');
+    message.classList.add('message', sender);
+    message.textContent = text;
+    auctAiMessages.appendChild(message);
+    auctAiMessages.scrollTop = auctAiMessages.scrollHeight;
+}
+
+// API Keys (Replace with your actual API keys)
+const OPENAI_API_KEY = 'your-openai-api-key';
+const DEEPSEEK_API_KEY = 'your-deepseek-api-key';
+const BLACKBOX_API_KEY = 'your-blackbox-api-key';
+
+// Function to send a message to ChatGPT
+async function sendToChatGPT(message) {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: message }],
+            max_tokens: 150
+        })
+    });
+    const data = await response.json();
+    return data.choices[0].message.content;
+}
+
+// Function to send a message to DeepSeek.ai
+async function sendToDeepSeek(message) {
+    const response = await fetch('https://api.deepseek.ai/v1/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+        },
+        body: JSON.stringify({
+            query: message,
+            max_tokens: 150
+        })
+    });
+    const data = await response.json();
+    return data.response;
+}
+
+// Function to send a message to Blackbox.ai
+async function sendToBlackbox(message) {
+    const response = await fetch('https://api.blackbox.ai/v1/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${BLACKBOX_API_KEY}`
+        },
+        body: JSON.stringify({
+            query: message,
+            max_tokens: 150
+        })
+    });
+    const data = await response.json();
+    return data.response;
+}
+
+// Handle Auct AI Response
+async function handleAuctAiResponse(userMessage) {
+    const selectedAI = document.getElementById('ai-service').value;
+    let responses = [];
+
+    if (selectedAI === 'all' || selectedAI === 'chatgpt') {
+        const chatGPTResponse = await sendToChatGPT(userMessage);
+        responses.push({ source: 'ChatGPT', response: chatGPTResponse });
+    }
+
+    if (selectedAI === 'all' || selectedAI === 'deepseek') {
+        const deepSeekResponse = await sendToDeepSeek(userMessage);
+        responses.push({ source: 'DeepSeek.ai', response: deepSeekResponse });
+    }
+
+    if (selectedAI === 'all' || selectedAI === 'blackbox') {
+        const blackboxResponse = await sendToBlackbox(userMessage);
+        responses.push({ source: 'Blackbox.ai', response: blackboxResponse });
+    }
+
+    // Display all responses
+    responses.forEach(res => {
+        addMessage(`${res.source}: ${res.response}`, 'bot');
+    });
+}
+
+// Add Message to Chat
+function addMessage(text, sender) {
+    const message = document.createElement('div');
+    message.classList.add('message', sender);
+    message.textContent = text;
+    auctAiMessages.appendChild(message);
+    auctAiMessages.scrollTop = auctAiMessages.scrollHeight;
+}
+
+// Send Message to Auct AI
+auctAiSend.addEventListener('click', () => {
+    const userMessage = auctAiInput.value.trim();
+    if (userMessage) {
+        addMessage(userMessage, 'user');
+        auctAiInput.value = '';
+        setTimeout(() => {
+            handleAuctAiResponse(userMessage);
+        }, 500);
+    }
+});
+
+
+
+// Function to send a message to ChatGPT
+async function sendToChatGPT(message) {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: message }],
+            max_tokens: 150
+        })
+    });
+    const data = await response.json();
+    return data.choices[0].message.content;
+}
+
+// Function to send a message to DeepSeek.ai
+async function sendToDeepSeek(message) {
+    const response = await fetch('https://api.deepseek.ai/v1/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+        },
+        body: JSON.stringify({
+            query: message,
+            max_tokens: 150
+        })
+    });
+    const data = await response.json();
+    return data.response;
+}
+
+// Function to send a message to Blackbox.ai
+async function sendToBlackbox(message) {
+    const response = await fetch('https://api.blackbox.ai/v1/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${BLACKBOX_API_KEY}`
+        },
+        body: JSON.stringify({
+            query: message,
+            max_tokens: 150
+        })
+    });
+    const data = await response.json();
+    return data.response;
+}
+
+// Handle Auct AI Response
+async function handleAuctAiResponse(userMessage) {
+    const selectedAI = document.getElementById('ai-service').value;
+    let responses = [];
+
+    // Show loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.textContent = 'Loading...';
+    auctAiMessages.appendChild(loadingIndicator);
+
+    if (selectedAI === 'all' || selectedAI === 'chatgpt') {
+        try {
+            const chatGPTResponse = await sendToChatGPT(userMessage);
+            responses.push({ source: 'ChatGPT', response: chatGPTResponse });
+        } catch (error) {
+            responses.push({ source: 'ChatGPT', response: 'Sorry, there was an error processing your request.' });
+        }
+    }
+
+    if (selectedAI === 'all' || selectedAI === 'deepseek') {
+        try {
+            const deepSeekResponse = await sendToDeepSeek(userMessage);
+            responses.push({ source: 'DeepSeek.ai', response: deepSeekResponse });
+        } catch (error) {
+            responses.push({ source: 'DeepSeek.ai', response: 'Sorry, there was an error processing your request.' });
+        }
+    }
+
+    if (selectedAI === 'all' || selectedAI === 'blackbox') {
+        try {
+            const blackboxResponse = await sendToBlackbox(userMessage);
+            responses.push({ source: 'Blackbox.ai', response: blackboxResponse });
+        } catch (error) {
+            responses.push({ source: 'Blackbox.ai', response: 'Sorry, there was an error processing your request.' });
+        }
+    }
+
+    // Remove loading indicator
+    loadingIndicator.remove();
+
+    // Display all responses
+    responses.forEach(res => {
+        addMessage(`${res.source}: ${res.response}`, 'bot');
+    });
+}
+
+// Add Message to Chat
+function addMessage(text, sender) {
+    const message = document.createElement('div');
+    message.classList.add('message', sender);
+    message.textContent = text;
+    auctAiMessages.appendChild(message);
+    auctAiMessages.scrollTop = auctAiMessages.scrollHeight;
+}
+
+// Send Message to Auct AI
+auctAiSend.addEventListener('click', () => {
+    const userMessage = auctAiInput.value.trim();
+    if (userMessage) {
+        addMessage(userMessage, 'user');
+        auctAiInput.value = '';
+        setTimeout(() => {
+            handleAuctAiResponse(userMessage);
+        }, 500);
+    }
+});
+
+// New Features
+
+// 1. Movie Recommendations
+function getMovieRecommendations() {
+    const recommendations = movies.slice(0, 5).map(movie => movie.title).join(', ');
+    addMessage(`Here are some movie recommendations: ${recommendations}`, 'bot');
+}
+
+// 2. Movie Reviews
+function getMovieReviews(movieName) {
+    const movie = movies.find(m => m.title.toLowerCase() === movieName.toLowerCase());
+    if (movie) {
+        addMessage(`Reviews for ${movie.title}: ${movie.description}`, 'bot');
+    } else {
+        addMessage(`Sorry, I couldn't find reviews for ${movieName}.`, 'bot');
+    }
+}
+
+// 3. Watchlist Management
+function manageWatchlist(action, movieName) {
+    const movie = movies.find(m => m.title.toLowerCase() === movieName.toLowerCase());
+    if (movie) {
+        if (action === 'add') {
+            watchlist.push(movie);
+            localStorage.setItem('watchlist', JSON.stringify(watchlist));
+            addMessage(`${movie.title} added to watchlist.`, 'bot');
+        } else if (action === 'remove') {
+            watchlist = watchlist.filter(m => m.title !== movie.title);
+            localStorage.setItem('watchlist', JSON.stringify(watchlist));
+            addMessage(`${movie.title} removed from watchlist.`, 'bot');
+        }
+    } else {
+        addMessage(`Sorry, I couldn't find ${movieName}.`, 'bot');
+    }
+}
+
+// 4. Trending Movies
+function getTrendingMovies() {
+    const trendingMovies = movies.slice(0, 5).map(movie => movie.title).join(', ');
+    addMessage(`Trending movies: ${trendingMovies}`, 'bot');
+}
+
+// 5. Light/Dark Mode Toggle
+function toggleLightDarkMode() {
+    const body = document.body;
+    body.classList.toggle('light-mode');
+    const toggle = document.getElementById('dark-mode-toggle');
+    if (body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        toggle.textContent = 'Dark Mode';
+    } else {
+        localStorage.setItem('theme', 'dark');
+        toggle.textContent = 'Light Mode';
+    }
+    addMessage(`Light/Dark mode toggled.`, 'bot');
+}
+
+// Handle Auct AI Response with New Features
+async function handleAuctAiResponse(userMessage) {
+    const selectedAI = document.getElementById('ai-service').value;
+    let responses = [];
+
+    // Show loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.textContent = 'Loading...';
+    auctAiMessages.appendChild(loadingIndicator);
+
+    if (selectedAI === 'all' || selectedAI === 'chatgpt') {
+        try {
+            const chatGPTResponse = await sendToChatGPT(userMessage);
+            responses.push({ source: 'ChatGPT', response: chatGPTResponse });
+        } catch (error) {
+            responses.push({ source: 'ChatGPT', response: 'Sorry, there was an error processing your request.' });
+        }
+    }
+
+    if (selectedAI === 'all' || selectedAI === 'deepseek') {
+        try {
+            const deepSeekResponse = await sendToDeepSeek(userMessage);
+            responses.push({ source: 'DeepSeek.ai', response: deepSeekResponse });
+        } catch (error) {
+            responses.push({ source: 'DeepSeek.ai', response: 'Sorry, there was an error processing your request.' });
+        }
+    }
+
+    if (selectedAI === 'all' || selectedAI === 'blackbox') {
+        try {
+            const blackboxResponse = await sendToBlackbox(userMessage);
+            responses.push({ source: 'Blackbox.ai', response: blackboxResponse });
+        } catch (error) {
+            responses.push({ source: 'Blackbox.ai', response: 'Sorry, there was an error processing your request.' });
+        }
+    }
+
+    // Remove loading indicator
+    loadingIndicator.remove();
+
+    // Display all responses
+    responses.forEach(res => {
+        addMessage(`${res.source}: ${res.response}`, 'bot');
+    });
+
+    // Handle New Features
+    const query = userMessage.toLowerCase();
+    if (query.includes('recommend')) {
+        getMovieRecommendations();
+    } else if (query.includes('review')) {
+        const movieName = query.replace('review', '').trim();
+        getMovieReviews(movieName);
+    } else if (query.includes('add to watchlist')) {
+        const movieName = query.replace('add to watchlist', '').trim();
+        manageWatchlist('add', movieName);
+    } else if (query.includes('remove from watchlist')) {
+        const movieName = query.replace('remove from watchlist', '').trim();
+        manageWatchlist('remove', movieName);
+    } else if (query.includes('trending')) {
+        getTrendingMovies();
+    } else if (query.includes('light mode') || query.includes('dark mode')) {
+        toggleLightDarkMode();
+    }
+}
+
+// Function to set or edit the user's name
+document.getElementById('edit-name').addEventListener('click', () => {
+    const dropdown = document.getElementById('profile-dropdown');
+    const editNameForm = document.createElement('div');
+    editNameForm.className = 'edit-profile-form';
+    editNameForm.innerHTML = `
+        <input type="text" id="edit-name-input" placeholder="Enter your name">
+        <button onclick="saveName()">Save</button>
+    `;
+    
+    // Append the form to the dropdown
+    dropdown.appendChild(editNameForm);
+
+    // Trigger the fade-in animation
+    setTimeout(() => {
+        editNameForm.style.opacity = '1';
+        editNameForm.style.transform = 'translateY(0)';
+    }, 10);
+});
+
+// Function to save the user's name
+function saveName() {
+    const name = document.getElementById('edit-name-input').value;
+    if (name) {
+        localStorage.setItem('userName', name);
+        updateUserNameDisplay(name);
+        alert('Name saved successfully!');
+    } else {
+        alert('Please enter a valid name.');
+    }
+
+    // Remove the form with fade-out animation
+    const editNameForm = document.querySelector('.edit-profile-form');
+    editNameForm.style.opacity = '0';
+    editNameForm.style.transform = 'translateY(-10px)';
+
+    // Wait for the animation to complete before removing the form
+    setTimeout(() => {
+        editNameForm.remove();
+    }, 300);
+}
+
+// Function to update the user's name display in the header
+function updateUserNameDisplay(name) {
+    const userNameDisplay = document.querySelector('.user-profile .user-name');
+    if (userNameDisplay) {
+        userNameDisplay.textContent = name;
+    } else {
+        const userProfile = document.querySelector('.user-profile');
+        const userNameDisplay = document.createElement('span');
+        userNameDisplay.className = 'user-name';
+        userNameDisplay.textContent = name;
+        userProfile.insertBefore(userNameDisplay, userProfile.firstChild);
+    }
+}
+
+// Load the user's name from localStorage on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+        updateUserNameDisplay(userName);
+    }
+});
+// Load the user's name from localStorage on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+        updateUserNameDisplay(userName);
+    }
+});
+// Function to detect if the user is on a mobile device
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Function to detect if the user is on a desktop
+function isDesktopDevice() {
+    return !isMobileDevice();
+}
+
+// Function to check screen width and determine device type
+function getDeviceType() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 768) {
+        return 'mobile';
+    } else {
+        return 'desktop';
+    }
+}
+
+// Example usage
+document.addEventListener('DOMContentLoaded', () => {
+    const deviceType = getDeviceType();
+    console.log(`User is on a ${deviceType} device.`);
+
+    if (deviceType === 'mobile') {
+        // Apply mobile-specific styles or layout changes
+        document.body.classList.add('mobile-layout');
+    } else {
+        // Apply desktop-specific styles or layout changes
+        document.body.classList.add('desktop-layout');
+    }
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const deviceType = getDeviceType();
+
+    if (deviceType === 'mobile') {
+        // Example: Change the grid layout for mobile
+        const movieGrid = document.getElementById('movies');
+        movieGrid.style.gridTemplateColumns = 'repeat(2, 1fr)'; // 2 columns for mobile
+    } else {
+        // Example: Change the grid layout for desktop
+        const movieGrid = document.getElementById('movies');
+        movieGrid.style.gridTemplateColumns = 'repeat(4, 1fr)'; // 4 columns for desktop
+    }
+});
+window.addEventListener('resize', () => {
+    const deviceType = getDeviceType();
+    console.log(`User is on a ${deviceType} device.`);
+
+    if (deviceType === 'mobile') {
+        document.body.classList.remove('desktop-layout');
+        document.body.classList.add('mobile-layout');
+    } else {
+        document.body.classList.remove('mobile-layout');
+        document.body.classList.add('desktop-layout');
     }
 });
