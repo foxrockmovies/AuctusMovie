@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="hom2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
         .intro-text {
             position: absolute;
             top: 50%;
@@ -49,6 +57,62 @@
             animation-delay: 9s;
             animation-fill-mode: forwards;
         }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #000;
+            color: #fff;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .search-bar, .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        .search-bar button, .user-profile button {
+            background: none;
+            border: none;
+            color: #fff;
+        }
+
+        .user-profile i {
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .search-bar, .user-profile {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
     </style>
 </head>
 <body>
@@ -74,7 +138,7 @@
             <nav>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#" id="genre-filter">Genres</a></li>
+                    <li><a href="#" id="genre-filter">Movies</a></li>
                     <li><a href="#" id="watchlist">My List</a></li>
                 </ul>
             </nav>
@@ -85,10 +149,14 @@
                 <div class="search-results" id="search-results"></div>
             </div>
             <div class="user-profile" id="user-profile">
+                <span class="user-name"></span>
                 <i class="fas fa-user-circle"></i>
                 <div class="profile-dropdown" id="profile-dropdown">
                     <a href="#" id="dark-mode-toggle">
                         <i class="fas fa-moon"></i> Light Mode
+                    </a>
+                    <a href="#" id="edit-name">
+                        <i class="fas fa-edit"></i> Edit Name
                     </a>
                     <a href="#" id="edit-profile">
                         <i class="fas fa-edit"></i> Edit Profile
@@ -118,17 +186,128 @@
         <section class="top-features">
             <h2>Top Features</h2>
             <div class="feature-grid" id="top-features"></div>
+            <!-- Add this at the end of the <body> tag -->
+<!-- Add this inside the Auct AI bot section -->
+<div id="auct-ai-bot">
+    <div id="auct-ai-header">
+        <span>Auct AI</span>
+        <button id="close-ai-bot"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="auct-ai-chat">
+        <div id="auct-ai-messages"></div>
+    </div>
+    <div id="auct-ai-input-container">
+        <input type="text" id="auct-ai-input" placeholder="Ask Auct AI about movies..." />
+        <button id="auct-ai-send"><i class="fas fa-paper-plane"></i></button>
+    </div>
+    <!-- Add a dropdown to select AI service -->
+    <div id="ai-selector">
+        <select id="ai-service">
+            <option value="all">All AI Services</option>
+            <option value="chatgpt">ChatGPT</option>
+            <option value="deepseek">DeepSeek.ai</option>
+            <option value="blackbox">Blackbox.ai</option>
+        </select>
+    </div>
+</div>
         </section>
         <footer>
             <p>&copy; 2025 AUCTUS. All rights reserved.</p>
         </footer>
     </main>
-    <script src="home3.js"></script>
+    <script src="home2.js"></script>
     <script>
         const introText = document.querySelector('.intro-text');
         introText.addEventListener('animationend', () => {
             introText.style.display = 'none';
         });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <style>
+        /* Default styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Mobile-specific styles */
+        body.mobile-layout {
+            font-size: 14px;
+        }
+
+        /* Desktop-specific styles */
+        body.desktop-layout {
+            font-size: 16px;
+        }
+
+        /* Example grid layout */
+        .movie-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        /* Mobile grid layout */
+        body.mobile-layout .movie-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* Desktop grid layout */
+        body.desktop-layout .movie-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    </style>
+</head>
+<body>
+    <div class="movie-grid" id="movies">
+        <!-- Movie cards will be dynamically generated here -->
+    </div>
+
+    <script>
+        // Function to detect if the user is on a mobile device
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // Function to detect if the user is on a desktop
+        function isDesktopDevice() {
+            return !isMobileDevice();
+        }
+
+        // Function to check screen width and determine device type
+        function getDeviceType() {
+            const screenWidth = window.innerWidth;
+            if (screenWidth <= 768) {
+                return 'mobile';
+            } else {
+                return 'desktop';
+            }
+        }
+
+        // Apply layout based on device type
+        function applyLayout() {
+            const deviceType = getDeviceType();
+            console.log(`User is on a ${deviceType} device.`);
+
+            if (deviceType === 'mobile') {
+                document.body.classList.remove('desktop-layout');
+                document.body.classList.add('mobile-layout');
+            } else {
+                document.body.classList.remove('mobile-layout');
+                document.body.classList.add('desktop-layout');
+            }
+        }
+
+        // Initial layout application
+        document.addEventListener('DOMContentLoaded', applyLayout);
+
+        // Adjust layout on window resize
+        window.addEventListener('resize', applyLayout);
     </script>
 </body>
 </html>
