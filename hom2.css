@@ -17,21 +17,24 @@ body.light-mode {
     color: #333;
 }
 
+/* Header Styles */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #1f1f1f;
+    background: linear-gradient(135deg, #000000, #000000);
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .logo span {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    color: #e50914;
+    color: #fe0000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 nav ul {
@@ -48,9 +51,10 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #e50914;
+    color: #ffcc00;
 }
 
+/* Search Bar Styles */
 .search-bar {
     display: flex;
     align-items: center;
@@ -62,18 +66,18 @@ nav ul li a:hover {
     padding: 10px;
     border: none;
     border-radius: 25px;
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     transition: background-color 0.3s;
     width: 200px;
 }
 
 .search-bar input::placeholder {
-    color: #b3b3b3;
+    color: #ccc;
 }
 
 .search-bar input:focus {
-    background-color: #444;
+    background-color: rgba(255, 255, 255, 0.3);
     outline: none;
 }
 
@@ -81,7 +85,7 @@ nav ul li a:hover {
     padding: 10px;
     border: none;
     border-radius: 50%;
-    background-color: #e50914;
+    background-color: #2c2b2b;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
@@ -136,6 +140,118 @@ nav ul li a:hover {
 .highlight-text {
     color: #e50914;
     font-weight: bold;
+}
+
+.user-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-profile i {
+    font-size: 28px;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.user-profile:hover i {
+    color: #ffcc00;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-dropdown.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.profile-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.profile-dropdown a:hover {
+    background-color: #333;
+    transform: translateX(5px);
+}
+
+.profile-dropdown a i {
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .logo span {
+        font-size: 24px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .user-profile {
+        margin-top: 10px;
+    }
+
+    .profile-dropdown {
+        top: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo span {
+        font-size: 20px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    .search-bar input {
+        padding: 8px;
+    }
+
+    .search-bar button {
+        padding: 8px;
+    }
+
+    .user-profile i {
+        font-size: 24px;
+    }
 }
 
 .profile-dropdown {
@@ -566,3 +682,514 @@ body.light-mode .movie-card p, body.light-mode .feature-card p {
 .add-to-watchlist.added:hover {
     background-color: #218838; /* Darker green for hover state */
 }
+
+.edit-profile-form {
+    display: none;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.edit-profile-form.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.light-mode .edit-profile-form {
+    background-color: #fff;
+}
+
+body.light-mode .edit-profile-form input {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* Enhanced Light Mode Toggle */
+#dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #f40612;
+    transform: scale(1.05);
+}
+
+body.light-mode #dark-mode-toggle {
+    background-color: #333;
+    color: #fff;
+}
+
+body.light-mode #dark-mode-toggle:hover {
+    background-color: #444;
+}
+
+/* Enhanced Edit Profile Form */
+.edit-profile-form {
+    display: none;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.edit-profile-form.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.edit-profile-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.edit-profile-form input:focus {
+    background-color: #444;
+    outline: none;
+}
+
+.edit-profile-form button {
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-profile-form button:hover {
+    background-color: #f40612;
+}
+
+body.light-mode .edit-profile-form {
+    background-color: #fff;
+}
+
+body.light-mode .edit-profile-form input {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+body.light-mode .edit-profile-form button {
+    background-color: #333;
+    color: #fff;
+}
+
+body.light-mode .edit-profile-form button:hover {
+    background-color: #444;
+}
+
+/* Enhanced Logout Button */
+.profile-dropdown a.logout {
+    color: #e50914;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-dropdown a.logout:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+body.light-mode .profile-dropdown a.logout {
+    color: #e50914;
+}
+
+body.light-mode .profile-dropdown a.logout:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+/* Confirmation Modal for Logout */
+.confirmation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmation-modal.show {
+    display: flex;
+}
+
+.confirmation-modal-content {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.confirmation-modal-content h3 {
+    margin-bottom: 20px;
+}
+
+.confirmation-modal-content button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirmation-modal-content button.confirm {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.confirmation-modal-content button.confirm:hover {
+    background-color: #f40612;
+}
+
+.confirmation-modal-content button.cancel {
+    background-color: #666;
+    color: #fff;
+}
+
+.confirmation-modal-content button.cancel:hover {
+    background-color: #888;
+}
+
+body.light-mode .confirmation-modal-content {
+    background-color: #fff;
+    color: #333;
+}
+
+body.light-mode .confirmation-modal-content button.confirm {
+    background-color: #333;
+    color: #fff;
+}
+
+body.light-mode .confirmation-modal-content button.confirm:hover {
+    background-color: #444;
+}
+
+body.light-mode .confirmation-modal-content button.cancel {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+body.light-mode .confirmation-modal-content button.cancel:hover {
+    background-color: #ccc;
+}
+
+/* Auct AI Bot Styles */
+#auct-ai-bot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    background-color: #1f1f1f;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 10000;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#auct-ai-bot.show {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#auct-ai-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #e50914;
+    color: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#auct-ai-header span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#auct-ai-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#auct-ai-header button:hover {
+    transform: scale(1.1);
+}
+
+#auct-ai-chat {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 300px;
+    background-color: #1f1f1f;
+}
+
+#auct-ai-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease;
+}
+
+.message.user {
+    background-color: #333;
+    align-self: flex-end;
+    color: #fff;
+    animation: slideInRight 0.3s ease;
+}
+
+.message.bot {
+    background-color: #444;
+    align-self: flex-start;
+    color: #fff;
+    animation: slideInLeft 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+#auct-ai-input-container {
+    display: flex;
+    padding: 15px;
+    background-color: #1f1f1f;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#auct-ai-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #333;
+    color: #fff;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+#auct-ai-input:focus {
+    background-color: #444;
+}
+
+#auct-ai-send {
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#auct-ai-send:hover {
+    background-color: #f40612;
+    transform: scale(1.1);
+}
+
+/* Light Mode Styles for Auct AI */
+body.light-mode #auct-ai-bot {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode #auct-ai-header {
+    background-color: #333;
+}
+
+body.light-mode #auct-ai-chat {
+    background-color: #fff;
+}
+
+body.light-mode .message.user {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+body.light-mode .message.bot {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+body.light-mode #auct-ai-input-container {
+    background-color: #fff;
+}
+
+body.light-mode #auct-ai-input {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+body.light-mode #auct-ai-send {
+    background-color: #333;
+    color: #fff;
+}
+
+body.light-mode #auct-ai-send:hover {
+    background-color: #444;
+}
+#ai-selector {
+    padding: 10px;
+    background-color: #1f1f1f;
+    border-top: 1px solid #444;
+}
+
+#ai-selector select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+/* Loading Indicator */
+.loading-indicator {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    color: #ccc;
+}
+
+/* Movie Recommendations */
+.movie-recommendations {
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Movie Reviews */
+.movie-reviews {
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Watchlist Management */
+.watchlist-management {
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Trending Movies */
+.trending-movies {
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Light/Dark Mode Toggle */
+.light-dark-toggle {
+    padding: 10px;
+    background-color: #333;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-profile .user-name {
+    font-size: 18px;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.user-profile:hover .user-name {
+    color: #ffcc00;
+}
+/* Default styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Mobile-specific styles */
+body.mobile-layout {
+    font-size: 14px;
+    /* Add more mobile-specific styles here */
+}
+
+/* Desktop-specific styles */
+body.desktop-layout {
+    font-size: 16px;
+    /* Add more desktop-specific styles here */
+}
+/* Mobile styles */
+@media (max-width: 768px) {
+    body.mobile-layout {
+        /* Mobile-specific styles */
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    body.desktop-layout {
+        /* Desktop-specific styles */
+    }
+}
+
