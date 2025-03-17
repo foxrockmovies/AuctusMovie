@@ -15,10 +15,12 @@
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
 
-            <div class="search-bar">
-                <input type="text" id="search" placeholder="Search for a movie...">
-                <button>Search</button>
-            </div>
+                <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search for a movie...">
+                    <button>Search</button>
+                    <div id="suggestions" class="suggestions"></div> <!-- Add this line -->
+                    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+                </div>
         </nav>
     </header>
     <main>
@@ -33,7 +35,7 @@
                     </div>
                 </div>
                 <div class="slide fade">
-                    <img src="https://images.filmibeat.com/img/2025/01/azaadottfeature-1737957766.jpg" alt="Slide 2">
+                    <img src="https://assets-in.bmscdn.com/discovery-catalog/events/et00093811-asamsjchyr-landscape.jpg" alt="Slide 2">
                     <div class="slide-text">
                         <h2>Hindi Movies</h2>
                         <p>Explore the best of Bollywood!</p>
