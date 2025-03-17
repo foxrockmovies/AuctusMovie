@@ -493,3 +493,26 @@ footer {
         text-align: center;
     }
 }
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.suggestions div {
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.suggestions div:hover {
+    background-color: #444;
+}
