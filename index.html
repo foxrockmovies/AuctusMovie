@@ -3,90 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUCTUS MOVIES</title>
-    <link rel="stylesheet" href="hom2.css">
+    <meta name="description" content="AUCTUS MOVIES - Premium streaming platform for movies in multiple languages">
+    <title>AUCTUS MOVIES - Enhanced Streaming Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>AUCTUS MOVIES</h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="film-strip"></div>
+            <div class="film-reel"></div>
+        </div>
+    </div>
 
+    <header>
+        <div class="header-overlay"></div>
+        <nav class="container">
+            <div class="logo">
+                <h1><span>AUCTUS</span> MOVIES</h1>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#" class="active" aria-current="page">Home</a></li>
+                    <li><a href="#" onclick="filterMovies('hindi')">Hindi</a></li>
+                    <li><a href="#" onclick="filterMovies('gujarati')">Gujarati</a></li>
+                    <li><a href="#" onclick="showCategories()">Categories</a></li>
+                    <li><a href="#" onclick="showAllMovies('trending')">Trending</a></li>
+                </ul>
                 <div class="search-bar">
-                    <input type="text" id="search" placeholder="Search for a movie...">
-                    <button>Search</button>
-                    <div id="suggestions" class="suggestions"></div> <!-- Add this line -->
-                    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+                    <input type="text" id="search" placeholder="Search movies, actors, genres..." 
+                           oninput="debouncedShowSuggestions()" 
+                           onkeydown="handleSearchKey(event)"
+                           aria-label="Search movies">
+                    <button id="search-button" onclick="searchMovies()" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="suggestions" id="suggestions" role="listbox"></div>
                 </div>
+                <div class="user-controls">
+                    <button class="notification-btn" onclick="toggleNotifications()" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">0</span>
+                    </button>
+                    <div class="profile-icon" onclick="showProfileMenu(event)" aria-label="Profile menu">
+                        <img src="https://ui-avatars.com/api/?name=User&background=random" alt="Profile" loading="lazy">
+                        <div class="profile-menu" id="profile-menu">
+                            <div class="profile-header">
+                                <h3>Profiles</h3>
+                                <button class="add-profile" onclick="addProfile()" aria-label="Add profile">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <ul class="profile-list" role="list">
+                                <!-- Profiles will be dynamically added here -->
+                            </ul>
+                            <div class="profile-actions">
+                                <a href="#" onclick="editProfile()"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                                <a href="#" onclick="toggleTheme()"><i class="fas fa-moon"></i> Theme</a>
+                                <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
+
     <main>
-        <!-- Slideshow Section -->
-        <section class="slideshow">
+        <section class="hero-slideshow">
             <div class="slideshow-container">
-                <div class="slide fade">
-                    <img src="https://assets-in.bmscdn.com/discovery-catalog/events/et00432831-ezlnknlxfd-landscape.jpg" alt="Slide 1">
-                    <div class="slide-text">
+                <div class="slide">
+                    <div class="slide-bg" style="background-image: url('https://i.ytimg.com/vi/RouIzAuPGGU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA8OuF95TBsMK_4-H2cSBNj1tPDTA')" aria-hidden="true"></div>
+                    <div class="slide-content">
                         <h2>New Releases</h2>
-                        <p>Check out the latest movies!</p>
+                        <p>Latest cinematic masterpieces await you</p>
+                        <div class="slide-buttons">
+                            <button class="explore-btn" onclick="exploreCategory('new')">Watch Now</button>
+                        </div>
                     </div>
                 </div>
-                <div class="slide fade">
-                    <img src="https://assets-in.bmscdn.com/discovery-catalog/events/et00093811-asamsjchyr-landscape.jpg" alt="Slide 2">
-                    <div class="slide-text">
-                        <h2>Hindi Movies</h2>
-                        <p>Explore the best of Bollywood!</p>
+                <div class="slide">
+                    <div class="slide-bg" style="background-image: url('https://www.onlykollywood.com/wp-content/uploads/2021/12/pushpa-movie-review.jpg')" aria-hidden="true"></div>
+                    <div class="slide-content">
+                        <h2>Bollywood Hits</h2>
+                        <p>Experience the magic of Hindi cinema</p>
+                        <div class="slide-buttons">
+                            <button class="explore-btn" onclick="exploreCategory('hindi')">Explore</button>
+                        </div>
                     </div>
                 </div>
-                <div class="slide fade">
-                    <img src="https://assets-in.bmscdn.com/discovery-catalog/events/et00407336-cqldepzgym-landscape.jpg" alt="Slide 3">
-                    <div class="slide-text">
-                        <h2>Gujarati Movies</h2>
-                        <p>Discover Gujarati cinema!</p>
+                <div class="slide">
+                    <div class="slide-bg" style="background-image: url('https://m.media-amazon.com/images/M/MV5BNzMwOGJmZWItNDEyMC00ZTcyLTg0NzUtOTg5NjkzYjc3ZTY1XkEyXkFqcGc@._V1_.jpg')" aria-hidden="true"></div>
+                    <div class="slide-content">
+                        <h2>Gujarati Gems</h2>
+                        <p>Discover regional excellence</p>
+                        <div class="slide-buttons">
+                            <button class="explore-btn" onclick="exploreCategory('gujarati')">Discover</button>
+                        </div>
                     </div>
                 </div>
-                <!-- Next and Previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <!-- Dots for navigation -->
-            <div class="dots">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
+            <div class="slideshow-controls">
+                <button class="prev" onclick="plusSlides(-1)" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <div class="dots" role="tablist"></div>
+                <button class="next" onclick="plusSlides(1)" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
-        <!-- Downloads Section -->
-        <section class="downloads">
-            <h2>Available for Download</h2>
-            <div id="downloads" class="movie-grid"></div>
+        <section class="downloads container">
+            <div class="section-header">
+                <h2><i class="fas fa-download"></i> Trending Now</h2>
+                <button class="see-all" onclick="showAllMovies('trending')">See All</button>
+            </div>
+            <div id="downloads" class="movie-grid" role="list"></div>
+        </section>
+    
+        <section class="hindi container">
+            <div class="section-header">
+                <h2><i class="fas fa-bolt"></i> Hindi Movies</h2>
+                <button class="see-all" onclick="showAllMovies('hindi')">See All</button>
+            </div>
+            <div id="hindi" class="movie-grid" role="list"></div>
+        </section>
+    
+        <section class="gujarati container">
+            <div class="section-header">
+                <h2><i class="fas fa-star"></i> Gujarati Movies</h2>
+                <button class="see-all" onclick="showAllMovies('gujarati')">See All</button>
+            </div>
+            <div id="gujarati" class="movie-grid" role="list"></div>
+        </section>
+    
+        <section class="my-list container">
+            <div class="section-header">
+                <h2><i class="fas fa-heart"></i> My List</h2>
+                <button class="see-all" onclick="showAllMovies('my-list')">See All</button>
+            </div>
+            <div id="my-list" class="movie-grid" role="list"></div>
         </section>
     </main>
+
     <footer>
-        <div class="footer-content">
+        <div class="footer-overlay"></div>
+        <div class="container footer-content">
             <div class="footer-section">
-                <h3>About Us</h3>
-                <p>AUCTUS MOVIES is a platform where you can download your favorite movies and TV shows.</p>
+                <h3>Auctus Movies</h3>
+                <p>Your premium destination for cinematic excellence</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3>Explore</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="#">New Releases</a></li>
+                    <li><a href="#">Popular Movies</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Cast</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: auctuscommunity@gmail.com</p>
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                </form>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AUCTUS MOVIES. All rights reserved.</p>
+            <p>&copy; 2025 Auctus Movies. All Rights Reserved.</p>
         </div>
     </footer>
-    <script src="home3.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
